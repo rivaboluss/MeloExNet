@@ -1,0 +1,12 @@
+# derived data / caches (regenerate with melody_cnn/data/prepare_pop909.py)
+data_cache/
+
+# downloaded reference PDFs
+refs/
+
+# local artifacts
+.screenshots/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/

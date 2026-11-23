@@ -1,0 +1,46 @@
+seed: 42
+pop909_dir: ../POP909-Dataset-master/POP909
+cache_dir: ./data_cache/pop909_rolls_chord
+
+# piano-roll grid
+steps_per_beat: 4          # 16th-note grid
+beats_per_bar: 4
+pitch_min: 21
+pitch_max: 108
+segment_bars: 4
+segment_hop_bars: 2
+min_onsets: 8
+binary_label: true         # melody vs non-melody (bridge+accomp -> 0)
+
+# model input: 12 roll channels + pitch_y + bar_norm + pos_in_bar
+# roll: state, in_scale, is_bar, velocity, duration, max_velocity,
+#       chord_tone, chord_dist, chord_root, chord_phase, chord_valid, metric
+in_channels: 15
+base_channels: 32
+num_classes: 2
+kernel_time: 15
+kernel_pitch: 5
+num_blocks: 4
+dropout: 0.1
+cond_dim: 14               # key FiLM
+
+# augmentation
+aug_pitch_prob: 0.5
+aug_pitch_range: 3
+aug_mo_prob: 0.25
+use_chord: true
+use_metric: true
+
+# train
+batch_size: 12
+epochs: 12
+lr: 0.001
+weight_decay: 0.0001
+num_workers: 4
+val_ratio: 0.1
+test_ratio: 0.1
+focal_alpha: 0.25            # melody; non-melody = 0.75
+focal_gamma: 2.0
+amp: true
+device: cuda
+out_dir: ./runs/chord_metric_ce
