@@ -10,3 +10,6 @@ __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
+
+# paper drafts (not public until accepted)
+paper_draft*.md
